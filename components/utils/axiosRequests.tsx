@@ -4,6 +4,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
+import { BaseUrl } from "./baseUrl";
 
 export const AxiosRequests = () => {
   const access_token =
@@ -12,13 +13,13 @@ export const AxiosRequests = () => {
       : null;
   const parsedAccessToken = access_token ? JSON.parse(access_token) : null;
   const refresh_token = Cookies.get("refresh_token");
-  const baseUrl = "http://127.0.0.1:8000/api";
+  const requestBaseUrl = `${BaseUrl}/api`;
   const headers = {
     Authorization: `Bearer ${parsedAccessToken}`,
     "Content-Type": "application/json",
   };
   const reqInstance = axios.create({
-    baseURL: baseUrl,
+    baseURL: requestBaseUrl,
     headers: headers,
     withCredentials: true,
   });
@@ -28,7 +29,7 @@ export const AxiosRequests = () => {
       const user = jwtDecode(access_token);
       const isExpired = dayjs.unix(user.exp ?? 0).diff(dayjs()) < 1;
       if (isExpired) {
-        const url = `${baseUrl}/accounts/refresh`;
+        const url = `${requestBaseUrl}/accounts/refresh`;
         const data = { refresh: refresh_token };
         try {
           const res = await axios.post(url, data);

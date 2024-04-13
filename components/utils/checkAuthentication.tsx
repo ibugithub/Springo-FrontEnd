@@ -8,7 +8,7 @@ export const CheckAuthentication = () => {
   const [isAuthenticated, setisAuthenticated] = useState(false);
   const router =  useRouter();
   const requestIntance = AxiosRequests();
-  const url = `${BaseUrl}/accounts/checkAuth`;
+  const url = `${BaseUrl}/api/accounts/checkAuth`;
 
   const check = async(token: string) => {
     const  parsedToken = JSON.parse(token);
@@ -27,7 +27,9 @@ export const CheckAuthentication = () => {
         toast.info("Session Expired")
         router.push('/signin')
         return;
-      } 
+      }else {
+        console.error("unKnown Error at checkAuthentication", err)
+      }
     }
   }
 

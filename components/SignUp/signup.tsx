@@ -8,6 +8,7 @@ import logoImage from "../../assets/logo.jpg";
 import "../../styles/login-register.css";
 import Image from "next/image";
 import { signupResponseData } from "../Products/interface";
+import { BaseUrl } from "../utils/baseUrl";
 
 const SignUp = () => {
   const router = useRouter();
@@ -37,8 +38,9 @@ const SignUp = () => {
     }
     setError("");
     try {
+      const url = `${BaseUrl}/api/accounts/register`;
       const req: AxiosResponse<any> = await axios.post(
-        "http://127.0.0.1:8000/api/accounts/register",
+        url,
         formData
       );
       if (req.status === 201) {
