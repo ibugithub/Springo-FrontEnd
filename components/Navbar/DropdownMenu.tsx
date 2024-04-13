@@ -1,11 +1,11 @@
-import React from "react";
 import { useRouter } from "next/navigation";
 import { HandleLogout } from "../utils/AuthLogout";
+import { DropdownMenuProps } from "../interface";
 
-const DropdownMenu: React.FC<{ onLogoutClick: () => void }> = ({
-  onLogoutClick,
-}) => {
-  const isAuthenticated = localStorage.getItem("accessToken") !== null;
+export const DropdownMenu = (
+  {onLogoutClick} : DropdownMenuProps
+) => {
+  const isAuthenticated = localStorage.getItem("access_token") !== null;
   const router = useRouter();
 
   const handleLogoutClick = () => {
@@ -46,4 +46,3 @@ const DropdownMenu: React.FC<{ onLogoutClick: () => void }> = ({
   );
 };
 
-export default DropdownMenu;

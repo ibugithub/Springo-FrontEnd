@@ -1,16 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import DropdownMenu from "./DropdownMenu";
+import { DropdownMenu } from "./DropdownMenu";
 import "../../styles/navbar.css";
 import logoImage from "../../assets/logo.jpg";
 import Image from "next/image";
 
-const Navbar: React.FC = () => {
+export const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
 
   const clickOnAccount = () => {
     setShowDropdown(!showDropdown);
@@ -26,15 +22,15 @@ const Navbar: React.FC = () => {
         <div className="left-nav-items">
           <Image src={logoImage} alt="Logo" className="logo-image" />
           <a href="/" className="logo-text">
-            SalonHub
+            Springo
           </a>
         </div>
         <div className="right-nav-items">
           <a href="/products" className="navbar-item">
-            Products
+            Story
           </a>
           <a href="/uploadprod" className="navbar-item">
-            Upload
+            Write
           </a>
           <a
             href="#"
@@ -50,5 +46,3 @@ const Navbar: React.FC = () => {
     </nav>
   );
 };
-
-export default Navbar;

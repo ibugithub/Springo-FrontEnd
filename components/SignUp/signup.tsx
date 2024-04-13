@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import logoImage from "../../assets/logo.jpg";
 import "../../styles/login-register.css";
 import Image from "next/image";
-import { signupResponseData } from "../Products/interface";
+import { signupResponseData } from "../interface";
 import { BaseUrl } from "../utils/baseUrl";
 
 const SignUp = () => {

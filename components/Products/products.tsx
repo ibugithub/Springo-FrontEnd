@@ -5,7 +5,7 @@ import axios from "axios";
 import Image from "next/image";
 import { EditProduct } from "./editProduct";
 import { toast } from "react-toastify";
-import { Product } from "./interface";
+import { Product } from "../interface";
 
 export const ShowProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -30,7 +30,7 @@ export const ShowProducts = () => {
   const handleSave = (newProd: Product) => {
     fetch();
     const isChanged =
-      newProd._id === editingProd?._id &&
+      newProd.id === editingProd?.id &&
       newProd.name === editingProd?.name &&
       newProd.description === editingProd?.description &&
     setEditingProd(null);

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Navbar from "@/components/Navbar/navbar";
+import { Navbar } from "@/components/Navbar/navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
