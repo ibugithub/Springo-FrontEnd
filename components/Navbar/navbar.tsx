@@ -26,10 +26,10 @@ export const Navbar = () => {
           </a>
         </div>
         <div className="right-nav-items">
-          <a href="/products" className="navbar-item">
+          <a href="/stories" className="navbar-item">
             Story
           </a>
-          <a href="/uploadprod" className="navbar-item">
+          <a href="/uploadStory" className="navbar-item">
             Write
           </a>
           <a

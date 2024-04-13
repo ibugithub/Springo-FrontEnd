@@ -8,6 +8,11 @@ export interface Story {
   story: string;
 }
 
+export interface EditStoryProps {
+  story: Story;
+  onSave: (story: Story) => void;
+  onCancel: () => void;
+}
 
 export interface signupResponseData {
   email : string[],

@@ -2,15 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { EditProduct } from "./editProduct";
+import { EditStory } from "./editStory";
 import { toast } from "react-toastify";
 import { Story } from "../interface";
+import { BaseUrl } from "../utils/baseUrl";
 
 export const ShowProducts = () => {
   const [stories, setStories] = useState<Story[]>([]);
   const [editingStory, setEditingStory] = useState<Story | null>(null);
   const fetch = async () => {
-    const response = await axios.get("http://127.0.0.1:8000/api/company/show_story/");
+    const url = `${BaseUrl}/api/stories/show_story/`
+    const response = await axios.get(url);
     setStories(response.data);
     console.log('the response is: ' , response)
   };
@@ -59,9 +61,9 @@ export const ShowProducts = () => {
         {stories.map((story) => (
           <div key={story.id}>
             {editingStory && editingStory.id === story.id ? (
-              <EditProduct
+              <EditStory
                 key={story.id}
-                product={editingStory}
+                story={editingStory}
                 onSave={handleSave}
                 onCancel={handleCancel}
               />

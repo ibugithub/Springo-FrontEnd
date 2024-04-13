@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { BaseUrl } from "../utils/baseUrl";
 
 export const Uploadprod = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +14,8 @@ export const Uploadprod = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/company/create_story/', formData, {
+      const url = `${BaseUrl}/api/stories/create_story/`
+      const response = await axios.post(url, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

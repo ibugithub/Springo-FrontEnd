@@ -1,4 +1,4 @@
-import { Uploadprod } from "@/components/Products/uploadProd";
+import { Uploadprod } from "@/components/Story/uploadStory";
 
 const Page = () => {
     return (
