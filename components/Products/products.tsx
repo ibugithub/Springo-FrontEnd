@@ -2,17 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Image from "next/image";
 import { EditProduct } from "./editProduct";
 import { toast } from "react-toastify";
-import { Product } from "../interface";
+import { Story } from "../interface";
 
 export const ShowProducts = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [editingProd, setEditingProd] = useState<Product | null>(null);
+  const [stories, setStories] = useState<Story[]>([]);
+  const [editingStory, setEditingStory] = useState<Story | null>(null);
   const fetch = async () => {
-    const response = await axios.get("http://127.0.0.1:8000/api/company/show_device/");
-    setProducts(response.data);
+    const response = await axios.get("http://127.0.0.1:8000/api/company/show_story/");
+    setStories(response.data);
     console.log('the response is: ' , response)
   };
 
@@ -23,24 +22,24 @@ export const ShowProducts = () => {
     fetchProducts();
   }, []);
 
-  const handleEdit = (prod: Product) => {
-    setEditingProd(prod);
+  const handleEdit = (prod: Story) => {
+    setEditingStory(prod);
   };
 
-  const handleSave = (newProd: Product) => {
+  const handleSave = (newProd: Story) => {
     fetch();
     const isChanged =
-      newProd.id === editingProd?.id &&
-      newProd.name === editingProd?.name &&
-      newProd.description === editingProd?.description &&
-    setEditingProd(null);
+      newProd.id === editingStory?.id &&
+      newProd.name === editingStory?.name &&
+      newProd.story === editingStory?.story &&
+    setEditingStory(null);
     if (!isChanged) {
       toast.success("Device updated successfully");
     }
   };
 
   const handleCancel = () => {
-    setEditingProd(null);
+    setEditingStory(null);
   };
 
   const handleDelete = async (id: string) => {
@@ -57,24 +56,24 @@ export const ShowProducts = () => {
     <div className="bg-white text-red-900 pl-10 pb-10">
       <h1 className="text-center"> Products </h1>
       <div>
-        {products.map((product) => (
-          <div key={product.id}>
-            {editingProd && editingProd.id === product.id ? (
+        {stories.map((story) => (
+          <div key={story.id}>
+            {editingStory && editingStory.id === story.id ? (
               <EditProduct
-                key={product.id}
-                product={editingProd}
+                key={story.id}
+                product={editingStory}
                 onSave={handleSave}
                 onCancel={handleCancel}
               />
             ) : (
               <>
-                <h2 className="text-3xl">{product.name}</h2>
-                <p>Description: {product.description}</p>
+                <h2 className="text-3xl">{story.name}</h2>
+                <p>Description: {story.story}</p>
                 <div className="text-white flex gap-2">
                   <button
                     className="bg-blue-500 px-4 py-1"
                     onClick={() => {
-                      handleEdit(product);
+                      handleEdit(story);
                     }}
                   >
                     {" "}
@@ -83,7 +82,7 @@ export const ShowProducts = () => {
                   <button
                     className="bg-red-400 px-4 py-1"
                     onClick={() => {
-                      handleDelete(product.id);
+                      handleDelete(story.id);
                     }}
                   >
                     {" "}

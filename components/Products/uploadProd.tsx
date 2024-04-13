@@ -7,23 +7,23 @@ import { toast } from "react-toastify";
 export const Uploadprod = () => {
   const [formData, setFormData] = useState({
     name: "",
-    description: "",
+    story: "",
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/company/create_device/', formData, {
+      const response = await axios.post('http://127.0.0.1:8000/api/company/create_story/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       })
-      toast.success("product uploaded successfully")
+      toast.success("Story uploaded successfully")
     } catch (error) {
       console.error("Error While uplaoding", error);
     }
   };
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   }
@@ -36,7 +36,7 @@ export const Uploadprod = () => {
       <form className=" ">
         <div className="flex flex-col gap-2 w-[250px] mx-auto">
           <input className="text-red-900" type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
-          <input className="text-red-900" type="text" name="description" placeholder="Description" value={formData.description} onChange={handleChange} />
+          <textarea className="text-red-900" name="story" placeholder="Description" value={formData.story} onChange={handleChange} />
           <button type="submit" onClick={handleSubmit} className="bg-red-900 text-white"> Publish </button>
         </div>
       </form>

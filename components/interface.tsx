@@ -2,10 +2,10 @@ export interface DropdownMenuProps {
   onLogoutClick : () => void;
 }
 
-export interface Product {
+export interface Story {
   id: string;
   name: string;
-  description: string;
+  story: string;
 }
 
 
