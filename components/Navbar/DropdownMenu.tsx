@@ -1,11 +1,13 @@
 import { useRouter } from "next/navigation";
 import { HandleLogout } from "../utils/AuthLogout";
 import { DropdownMenuProps } from "../interface";
+import { authenticated } from "../utils/checkAuthentication";
+
 
 export const DropdownMenu = (
   {onLogoutClick} : DropdownMenuProps
 ) => {
-  const isAuthenticated = localStorage.getItem("access_token") !== null;
+  const isAuthenticated = authenticated(false)
   const router = useRouter();
 
   const handleLogoutClick = () => {

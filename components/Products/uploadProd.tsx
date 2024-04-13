@@ -30,14 +30,14 @@ export const Uploadprod = () => {
   return (
     <>
       <div className="text-center mt-[9rem]">
-        <h1>Let&apos;s upload some Device</h1>
+        <h1>Let&apos;s Write some Story</h1>
       </div>
 
       <form className=" ">
         <div className="flex flex-col gap-2 w-[250px] mx-auto">
           <input className="text-red-900" type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
           <input className="text-red-900" type="text" name="description" placeholder="Description" value={formData.description} onChange={handleChange} />
-          <button type="submit" onClick={handleSubmit} className="bg-red-900 text-white"> Submit </button>
+          <button type="submit" onClick={handleSubmit} className="bg-red-900 text-white"> Publish </button>
         </div>
       </form>
     </>

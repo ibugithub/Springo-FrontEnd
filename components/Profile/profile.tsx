@@ -5,7 +5,7 @@ import { HandleLogout } from "../utils/AuthLogout";
 import { CheckAuthentication } from "../utils/checkAuthentication";
 
 const Profile = () => {
-  const isAuthenticated = CheckAuthentication();
+  CheckAuthentication();
   const router = useRouter();
   
   const [userInfo, setUserInfo] = useState({
