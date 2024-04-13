@@ -4,62 +4,57 @@ import React, { FormEvent, useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import logoImage from "../../assets/logo.jpg"; 
+import logoImage from "../../assets/logo.jpg";
 import "../../styles/login-register.css";
 import Image from "next/image";
+import { signupResponseData } from "../Products/interface";
 
 const SignUp = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     password: "",
-    cPassword: "",
+    password2: "",
   });
   const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const { email, firstName, lastName, password, cPassword } = formData;
+  const { email, first_name, last_name, password, password2 } = formData;
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (!email || !firstName || !lastName || !password || !cPassword) {
+    if (!email || !first_name || !last_name || !password || !password2) {
       setError("All fields are required");
       return;
     }
-
-    if (password !== cPassword) {
+    if (password !== password2) {
       setError("Passwords do not match");
       return;
     }
-
     setError("");
-
     try {
       const req: AxiosResponse<any> = await axios.post(
-        "http://localhost:3000/api/users/register",
+        "http://127.0.0.1:8000/api/accounts/register",
         formData
       );
       if (req.status === 201) {
-        router.push("/signin");
         toast.success("Registration successful");
+        router.push("/signin");
       }
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         const axiosError = error as AxiosError;
         if (axiosError.response) {
-          const responseData = axiosError.response.data as { error: string };
-          if (
-            axiosError.response.status === 400 &&
-            responseData.error === "User already exists"
-          ) {
-            setError("User already exists");
-          } else {
-            setError("An error occurred");
+          const responseData = axiosError.response.data as signupResponseData;
+          console.log("the  response data is ", responseData)
+          if (responseData && responseData.email){
+            setError(responseData.email[0]);
+          } else if (responseData && responseData.password) {
+            setError("Password must have at least 6 ");
           }
         } else {
           console.log("Error:", axiosError.message);
@@ -98,20 +93,20 @@ const SignUp = () => {
             <div>
               <input
                 type="text"
-                name="firstName"
+                name="first_name"
                 placeholder="First Name"
                 className="p-1 text-red-900"
-                value={firstName}
+                value={first_name}
                 onChange={handleChange}
               />
             </div>
             <div>
               <input
                 type="text"
-                name="lastName"
+                name="last_name"
                 placeholder="Last Name"
                 className="p-1 text-red-900"
-                value={lastName}
+                value={last_name}
                 onChange={handleChange}
               />
             </div>
@@ -128,15 +123,15 @@ const SignUp = () => {
             <div>
               <input
                 type="password"
-                name="cPassword"
+                name="password2"
                 placeholder="Confirm Password"
                 className="p-1 text-red-900"
-                value={cPassword}
+                value={password2}
                 onChange={handleChange}
               />
             </div>
             <div className="text-center mt-2">
-              <input type="submit" value="Submit" className="submit-btn" />
+              <input type="submit" value="Sign Up" className="submit-btn" />
             </div>
           </form>
           <div>

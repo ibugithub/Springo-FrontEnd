@@ -1,15 +1,18 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Protected } from "../utils/protectRoutes";
-import { useRouter } from "next/navigation"; // Import useRouter hook
-import handleLogout from "../utils/AuthLogout"; // Import handleLogout function
+import { useRouter } from "next/navigation";
+import { HandleLogout } from "../utils/AuthLogout";
+import { CheckAuthentication } from "../utils/checkAuthentication";
 
 const Profile = () => {
-  const isAuthenticated = Protected();
+  const isAuthenticated = CheckAuthentication();
+  const router = useRouter();
+  
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
   });
+
 
   useEffect(() => {
     const storedName = localStorage.getItem("name") ?? "";
@@ -20,16 +23,9 @@ const Profile = () => {
     });
   }, []);
 
-  // Get the router object using useRouter hook
-  const router = useRouter();
-
-  if (!isAuthenticated) {
-    return <p>Loading....</p>;
-  }
 
   const handleLogoutClick = () => {
-    // Pass the router object as an argument to handleLogout function
-    handleLogout(router);
+    HandleLogout(router);
   };
 
   return (

@@ -1,19 +1,16 @@
 import React from "react";
 import { useRouter } from "next/navigation";
-import handleLogout from "../utils/AuthLogout";
+import { HandleLogout } from "../utils/AuthLogout";
 
 const DropdownMenu: React.FC<{ onLogoutClick: () => void }> = ({
   onLogoutClick,
 }) => {
-  // Check if accessToken is present in localStorage
   const isAuthenticated = localStorage.getItem("accessToken") !== null;
   const router = useRouter();
 
   const handleLogoutClick = () => {
-    // Call the onLogoutClick function passed from the Navbar component
     onLogoutClick();
-    // Perform logout action
-    handleLogout(router);
+    HandleLogout(router);
   };
 
   return (

@@ -3,3 +3,10 @@ export interface Product {
   name: string;
   description: string;
 }
+
+
+export interface signupResponseData {
+  email : string[],
+  password : string[],
+  password2: string[]
+}

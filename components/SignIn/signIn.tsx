@@ -19,25 +19,23 @@ const SignIn = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const req = await axios.post(
-        "http://localhost:3000/api/users/login",
+        "http://127.0.0.1:8000/api/accounts/login",
         formData
       );
       if (req.status === 200) {
         const response = req.data;
-        localStorage.setItem("name", JSON.stringify(response.name));
+        localStorage.setItem("name", JSON.stringify(response.full_name));
         localStorage.setItem("email", JSON.stringify(response.email));
         localStorage.setItem(
-          "accessToken",
-          JSON.stringify(response.accessToken)
+          "access_token",
+          JSON.stringify(response.access_token)
         );
-
-        const cookieName = "refreshToken";
-        const cookieValue = response.refreshToken;
+        const cookieName = "refresh_token";
+        const cookieValue = response.refresh_token;
         const expirationDate = new Date();
         expirationDate.setMonth(expirationDate.getMonth() + 1);
         document.cookie = `${cookieName}=${cookieValue}; expires=${expirationDate.toUTCString()}; path=/; SameSite=strict`;
@@ -96,7 +94,7 @@ const SignIn = () => {
               />
             </div>
             <div className="text-center mt-2">
-              <input type="submit" value="Submit" className="submit-btn" />
+              <input type="submit" value="Sign In" className="submit-btn" />
             </div>
           </form>
           <div>
