@@ -9,8 +9,7 @@ import { AxiosRequests } from "../utils/axiosRequests";
 
 export const Uploadprod = () => {
   const customRequest = AxiosRequests();
-  const writer = CheckWriter();
-  const [isWriter, setIsWriter] = useState(writer)
+  const isWriter = CheckWriter();
 
   const [formData, setFormData] = useState({
     name: "",
