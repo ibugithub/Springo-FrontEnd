@@ -57,7 +57,7 @@ export const ShowProducts = () => {
 
   return (
     <div className="bg-white text-red-900 pl-10 pb-10">
-      <h1 className="text-center"> Products </h1>
+      <h1 className="text-center"> Stories </h1>
       <div>
         {stories.map((story) => (
           <div key={story.id}>
