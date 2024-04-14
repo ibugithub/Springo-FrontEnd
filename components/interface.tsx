@@ -5,10 +5,6 @@ export interface CustomRouter extends NextNavigationRouter {
 
 }
 
-export interface DropdownMenuProps {
-  onLogoutClick : () => void;
-}
-
 
 export interface Story {
   id: string;

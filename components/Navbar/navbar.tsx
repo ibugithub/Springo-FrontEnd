@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { DropdownMenu } from "./DropdownMenu";
 import "../../styles/navbar.css";
 import logoImage from "../../assets/logo.jpg";
 import Image from "next/image";
@@ -33,14 +32,13 @@ export const Navbar = () => {
             Write
           </a>
           <a
-            href="#"
+            href="/profile"
             className="navbar-item"
             aria-haspopup="true"
             onClick={clickOnAccount}
           >
-            Account
+            Profile
           </a>
-          {showDropdown && <DropdownMenu onLogoutClick={handleLogoutClick} />}
         </div>
       </div>
     </nav>
