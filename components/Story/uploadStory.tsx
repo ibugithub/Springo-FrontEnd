@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { BaseUrl } from "../utils/baseUrl";
+import { CheckWriter } from "../utils/checkWriter";
 
 export const Uploadprod = () => {
+  const writer = CheckWriter();
+  const [isWriter, setIsWriter] = useState(writer)
+
   const [formData, setFormData] = useState({
     name: "",
     story: "",
@@ -25,10 +29,28 @@ export const Uploadprod = () => {
       console.error("Error While uplaoding", error);
     }
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   }
+
+  const handleRegisterAsWriter = () => {
+    
+  }
+
+  if (!isWriter) {
+    return (
+      <div className="text-center pt-20">
+        <div>
+          You must have to be a writer to write stories
+        </div>
+        <button className="bg-dark" onClick={handleRegisterAsWriter}>Click here to register as a writer</button>
+      </div>
+
+    );
+  }
+
   return (
     <>
       <div className="text-center mt-[9rem]">

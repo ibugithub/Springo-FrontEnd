@@ -4,22 +4,12 @@ import Cookies from "js-cookie";
 import { AxiosRequests } from "./axiosRequests";
 
 export const HandleLogout = async (router: any) => {
-  const accessToken = localStorage.getItem("access_token");
-  const reqInstance = AxiosRequests();
-  if (!accessToken) {
-    router.push("/");
-    return;
-  }
-
-  const parsedAccessToken = JSON.parse(accessToken);
-  const headers = { Authorization: `Bearer ${parsedAccessToken}` };
+  const reqInstance = AxiosRequests(router);
   const refresh_token = Cookies.get("refresh_token")
   const formData = { "refresh_token": refresh_token }
+  const url = "/accounts/logout"
   try {
-    const res = await reqInstance.post("/accounts/logout", formData, {
-      headers,
-      withCredentials: true,
-    });
+    const res = await reqInstance.post(url, formData);
     if (res.status === 200) {
       localStorage.clear();
       Cookies.remove('refresh_token')

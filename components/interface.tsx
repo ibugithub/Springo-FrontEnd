@@ -1,6 +1,10 @@
-export interface DropdownMenuProps {
-  onLogoutClick : () => void;
+import { useRouter } from "next/navigation";
+
+type NextNavigationRouter = ReturnType<typeof useRouter>;
+export interface CustomRouter extends NextNavigationRouter {
+
 }
+
 
 export interface Story {
   id: string;

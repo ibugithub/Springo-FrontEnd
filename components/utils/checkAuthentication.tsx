@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
-import { BaseUrl } from "./baseUrl";
 import { AxiosRequests } from "./axiosRequests";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
+
 export const CheckAuthentication = (showMsg: boolean = true) => {
   const [isAuthenticated, setisAuthenticated] = useState(false);
   const router = useRouter();
-  const requestIntance = AxiosRequests();
-  const url = `${BaseUrl}/api/accounts/checkAuth`;
+  const requestIntance = AxiosRequests(router);
+  const url = `/accounts/checkAuth`;
 
   const check = async (token: string) => {
     const parsedToken = JSON.parse(token);
@@ -17,7 +17,7 @@ export const CheckAuthentication = (showMsg: boolean = true) => {
       "Content-Type": "application/json"
     }
     try {
-      const res = await requestIntance.get(url, { headers: header })
+      const res = await requestIntance.get(url)
       if (res.status === 200) {
         setisAuthenticated(true)
       }

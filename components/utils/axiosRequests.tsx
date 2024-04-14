@@ -5,8 +5,9 @@ import { jwtDecode } from "jwt-decode";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
 import { BaseUrl } from "./baseUrl";
+import { CustomRouter } from "../interface";
 
-export const AxiosRequests = () => {
+export const AxiosRequests = (router? : CustomRouter) => {
   const access_token =
     typeof window !== "undefined"
       ? localStorage.getItem("access_token")
@@ -40,7 +41,10 @@ export const AxiosRequests = () => {
             req.headers.Authorization = authorization;
             toast.success("Token regenereted successfully")
           }
-        } catch (error) {
+        } catch (error : any) {
+          if (error.response.status === 401) {
+            if (router) {router.push('/signin')}
+          }
           console.error("Error refreshing token:", error);
         }
       }
