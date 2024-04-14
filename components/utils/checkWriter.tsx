@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 export const CheckWriter = () => {
   const [isWriter, setIsWriter] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const requestIntance = AxiosRequests(router);
   const url = '/stories/check_isWriter/';
@@ -15,16 +16,22 @@ export const CheckWriter = () => {
       try {
         const res = await requestIntance.get(url)
         if (res.status === 200) {
-          setIsWriter(true)
+          setIsWriter(true);
+          setIsLoading(false);
         }
       } catch (err: any) {
-        setIsWriter(false)
-        console.error("unKnown Error at checkAuthentication", err)
-        toast.info("Session Expired")
-        router.push('/signin')
+        if (err.response.status === 403) {
+          setIsLoading(false);
+          setIsWriter(false)
+        } else if (err.response.status === 401) {
+          toast.info("Session Expired")
+          router.push('/signin')
+        } else {
+          console.error("unKnown Error at checkAuthentication", err)
+        }
       }
     }
     check();
   }, [requestIntance, router]);
-  return isWriter;
+  return { isWriter, setIsWriter, isLoading };
 }

@@ -9,7 +9,7 @@ import { AxiosRequests } from "../utils/axiosRequests";
 
 export const Uploadprod = () => {
   const customRequest = AxiosRequests();
-  const isWriter = CheckWriter();
+  const { isWriter, setIsWriter, isLoading } = CheckWriter();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -36,8 +36,23 @@ export const Uploadprod = () => {
     setFormData({ ...formData, [name]: value });
   }
 
-  const handleRegisterAsWriter = () => {
-    
+  const handleRegisterAsWriter = async () => {
+    const url = "/stories/make_writer/";
+    try {
+      const res = await customRequest.get(url)
+      if (res.status === 200) {
+        setIsWriter(true)
+        toast.success("you are a writer now")
+      }
+    } catch (error) {
+      console.error("Error in uploadStory", error);
+    }
+  }
+
+  if (isLoading) {
+    return (
+      <div>Loading ....</div>
+    )
   }
 
   if (!isWriter) {
@@ -48,7 +63,6 @@ export const Uploadprod = () => {
         </div>
         <button className="bg-dark" onClick={handleRegisterAsWriter}>Click here to register as a writer</button>
       </div>
-
     );
   }
 
