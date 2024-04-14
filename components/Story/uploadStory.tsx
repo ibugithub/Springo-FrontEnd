@@ -5,8 +5,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { BaseUrl } from "../utils/baseUrl";
 import { CheckWriter } from "../utils/checkWriter";
+import { AxiosRequests } from "../utils/axiosRequests";
 
 export const Uploadprod = () => {
+  const customRequest = AxiosRequests();
   const writer = CheckWriter();
   const [isWriter, setIsWriter] = useState(writer)
 
