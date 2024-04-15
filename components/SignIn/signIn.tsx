@@ -34,9 +34,7 @@ const SignIn = () => {
         formData
       );
       if (req.status === 200) {
-        setIsLoading(false)
         const response = req.data;
-        console.log('the response from singin is ', response);
         localStorage.setItem("name", JSON.stringify(response.full_name));
         localStorage.setItem("username", JSON.stringify(response.username));
         localStorage.setItem("email", JSON.stringify(response.email));
@@ -51,9 +49,9 @@ const SignIn = () => {
         document.cookie = `${cookieName}=${cookieValue}; expires=${expirationDate.toUTCString()}; path=/; SameSite=strict`;
         router.push("/profile");
         toast.success("Login successful");
+        setIsLoading(false)
       }
     } catch (error: unknown) {
-      setIsLoading(false)
       if (axios.isAxiosError(error) && error.response) {
         if (
           error.response.status === 401
@@ -68,6 +66,7 @@ const SignIn = () => {
         console.log("Unhandled Error:", error);
         toast.error("An unKnown error occurred");
       }
+      setIsLoading(false)
     }
   };
 

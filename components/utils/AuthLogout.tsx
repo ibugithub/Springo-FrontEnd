@@ -15,12 +15,11 @@ export const HandleLogout = async (router: CustomRouter, setIsLoading: Dispatch<
     if (res.status === 200) {
       localStorage.clear();
       Cookies.remove('refresh_token')
-      setIsLoading(false);
       toast.success("Logout successful");
       router.push("/");
+      setIsLoading(false);
     }
   } catch (error: any) {
-    setIsLoading(false);
     if (error.response.status === 401) {
       localStorage.removeItem("access_token");
       localStorage.removeItem("email");
@@ -31,5 +30,6 @@ export const HandleLogout = async (router: CustomRouter, setIsLoading: Dispatch<
       console.error("Logout error:", error.response);
       toast.error("An error occurred during logout");
     }
+    setIsLoading(false);
   }
 };
