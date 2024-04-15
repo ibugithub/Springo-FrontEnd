@@ -1,44 +1,92 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/navbar.css";
 import logoImage from "../../assets/logo.jpg";
 import Image from "next/image";
+import { HandleLogout } from "../utils/AuthLogout";
+import { useRouter } from "next/navigation";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import { login, logout } from "@/lib/features/auth/authSlice";
 
 export const Navbar = () => {
-  const [showDropdown, setShowDropdown] = useState(false);
+  const dispatch = useAppDispatch();
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false)
 
-  const clickOnAccount = () => {
-    setShowDropdown(!showDropdown);
-  };
+  useEffect(() => {
+    const token =  localStorage.getItem("access_token");
+    if(token) {
+        dispatch(login())
+    }
+  }, [dispatch]);
+
+  const handleNavigationClick = () => {
+    setIsLoading(true);
+  }
 
   const handleLogoutClick = () => {
-    setShowDropdown(false);
-  };
+    HandleLogout(router, setIsLoading);
+    dispatch(logout());
+  }
+
+  if (isLoading) {
+    return <div className="flex justify-center"><span className="mt-2">Loading...</span></div>
+  }
 
   return (
     <nav className="navbar">
       <div className="navbar-items">
         <div className="left-nav-items">
           <Image src={logoImage} alt="Logo" className="logo-image" />
-          <a href="/" className="logo-text">
+          <a href="/" className="logo-text" onClick={handleNavigationClick}>
             Springo
           </a>
         </div>
         <div className="right-nav-items">
-          <a href="/stories" className="navbar-item">
+          <a
+            href="/stories"
+            className="navbar-item"
+            onClick={handleNavigationClick}
+          >
             Story
           </a>
-          <a href="/uploadStory" className="navbar-item">
+          <a
+            href="/uploadStory"
+            className="navbar-item"
+            onClick={handleNavigationClick}
+          >
             Write
           </a>
-          <a
-            href="/profile"
-            className="navbar-item"
-            aria-haspopup="true"
-            onClick={clickOnAccount}
-          >
-            Profile
-          </a>
+
+          {isAuthenticated ? (
+            <>
+              <a
+                href="/profile"
+                className="navbar-item"
+                aria-haspopup="true"
+                onClick={handleNavigationClick} 
+              >
+                Profile
+              </a>
+              <span
+                className="navbar-item cursor-pointer"
+                aria-haspopup="true"
+                onClick={handleLogoutClick}
+              >
+                Sign out
+              </span>
+            </>
+          ) : (
+            <a
+              href="/signin"
+              className="navbar-item"
+              aria-haspopup="true"
+              onClick={handleNavigationClick}
+            >
+              Sign in
+            </a>
+          )}
         </div>
       </div>
     </nav>

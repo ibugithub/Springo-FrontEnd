@@ -8,8 +8,11 @@ import logoImage from "../../assets/logo.jpg";
 import "../../styles/login-register.css";
 import Image from "next/image";
 import { BaseUrl } from "../utils/baseUrl";
+import { login, logout } from "@/lib/features/auth/authSlice";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 
 const SignIn = () => {
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +37,7 @@ const SignIn = () => {
         formData
       );
       if (req.status === 200) {
+        dispatch(login())
         const response = req.data;
         localStorage.setItem("name", JSON.stringify(response.full_name));
         localStorage.setItem("username", JSON.stringify(response.username));

@@ -13,9 +13,7 @@ export const ShowProducts = () => {
   const fetch = async () => {
     const url = `${BaseUrl}/api/stories/show_story/`
     const response = await axios.get(url);
-    console.log('the response is ', response)
     setStories(response.data);
-    console.log('the response is: ' , response)
   };
 
   useEffect(() => {

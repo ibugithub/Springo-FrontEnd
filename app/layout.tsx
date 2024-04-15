@@ -3,6 +3,7 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Navbar } from "@/components/Navbar/navbar";
+import StoreProvider from "./storeProvider";
 
 export const metadata: Metadata = {
   title: "Springo",
@@ -14,6 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    <StoreProvider>
       <html lang="en">
         <body className="bg-slate-400">
           <Navbar />
@@ -21,5 +23,6 @@ export default function RootLayout({
           <div style={{ marginTop: "64px" }}>{children}</div>
         </body>
       </html>
+    </StoreProvider>
   );
 }
