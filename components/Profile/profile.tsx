@@ -7,7 +7,7 @@ import { CheckAuthentication } from "../utils/checkAuthentication";
 const Profile = () => {
   CheckAuthentication();
   const router = useRouter();
-  
+  const [isLoading, setIsLoading] = useState(false);
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
@@ -25,8 +25,15 @@ const Profile = () => {
 
 
   const handleLogoutClick = () => {
-    HandleLogout(router);
+    setIsLoading(true);
+    HandleLogout(router, setIsLoading);
   };
+
+  if(isLoading) {
+    return (
+      <div className="flex justify-center"><div className="mt-14">Logging you out..</div></div>
+    )
+  }
 
   return (
     <>

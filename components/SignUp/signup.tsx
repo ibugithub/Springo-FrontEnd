@@ -12,6 +12,7 @@ import { BaseUrl } from "../utils/baseUrl";
 
 const SignUp = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -39,16 +40,19 @@ const SignUp = () => {
     }
     setError("");
     try {
+      setIsLoading(true);
       const url = `${BaseUrl}/api/accounts/register`;
       const req: AxiosResponse<any> = await axios.post(
         url,
         formData
       );
       if (req.status === 201) {
+        setIsLoading(false);
         toast.success("Registration successful");
         router.push("/signin");
       }
     } catch (error: unknown) {
+      setIsLoading(false);
       if (axios.isAxiosError(error)) {
         const axiosError = error as AxiosError;
         if (axiosError.response) {
@@ -69,6 +73,12 @@ const SignUp = () => {
       }
     }
   };
+
+  if(isLoading) {
+    return (
+      <div className="flex justify-center"><div className="mt-14">Signing up..</div></div>
+    )
+  }
 
   return (
     <div className="login-container">

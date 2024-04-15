@@ -5,22 +5,27 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import logoImage from "../../assets/logo.jpg";
-import "../../styles/login-register.css"; 
+import "../../styles/login-register.css";
 import Image from "next/image";
 import { BaseUrl } from "../utils/baseUrl";
 
 const SignIn = () => {
   const router = useRouter();
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+
+
   const { username, password } = formData;
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    setIsLoading(true)
     e.preventDefault();
     try {
       const url = `${BaseUrl}/api/accounts/login`;
@@ -29,9 +34,12 @@ const SignIn = () => {
         formData
       );
       if (req.status === 200) {
+        setIsLoading(false)
         const response = req.data;
+        console.log('the response from singin is ', response);
         localStorage.setItem("name", JSON.stringify(response.full_name));
         localStorage.setItem("username", JSON.stringify(response.username));
+        localStorage.setItem("email", JSON.stringify(response.email));
         localStorage.setItem(
           "access_token",
           JSON.stringify(response.access_token)
@@ -45,6 +53,7 @@ const SignIn = () => {
         toast.success("Login successful");
       }
     } catch (error: unknown) {
+      setIsLoading(false)
       if (axios.isAxiosError(error) && error.response) {
         if (
           error.response.status === 401
@@ -61,6 +70,12 @@ const SignIn = () => {
       }
     }
   };
+
+  if(isLoading) {
+    return (
+      <div className="flex justify-center"><div className="mt-14">Logging you in..</div></div>
+    )
+  }
 
   return (
     <div className="login-container">
