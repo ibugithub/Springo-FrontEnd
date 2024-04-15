@@ -13,10 +13,10 @@ const SignIn = () => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
-  const { email, password } = formData;
+  const { username, password } = formData;
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -31,7 +31,7 @@ const SignIn = () => {
       if (req.status === 200) {
         const response = req.data;
         localStorage.setItem("name", JSON.stringify(response.full_name));
-        localStorage.setItem("email", JSON.stringify(response.email));
+        localStorage.setItem("username", JSON.stringify(response.username));
         localStorage.setItem(
           "access_token",
           JSON.stringify(response.access_token)
@@ -78,10 +78,10 @@ const SignIn = () => {
             <div>
               <input
                 type="text"
-                name="email"
-                placeholder="Email"
+                name="username"
+                placeholder="username"
                 className="p-1 text-red-900"
-                value={email}
+                value={username}
                 onChange={handleChange}
               />
             </div>

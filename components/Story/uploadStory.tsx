@@ -1,9 +1,7 @@
 "use client"
 
 import React, { useState } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
-import { BaseUrl } from "../utils/baseUrl";
 import { CheckWriter } from "../utils/checkWriter";
 import { AxiosRequests } from "../utils/axiosRequests";
 
@@ -19,12 +17,8 @@ export const Uploadprod = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const url = `${BaseUrl}/api/stories/create_story/`
-      const response = await axios.post(url, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
+      const url = "/stories/create_story/"
+      const response = await customRequest.post(url, formData)
       toast.success("Story uploaded successfully")
     } catch (error) {
       console.error("Error While uplaoding", error);

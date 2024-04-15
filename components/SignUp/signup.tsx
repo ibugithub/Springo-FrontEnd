@@ -13,6 +13,7 @@ import { BaseUrl } from "../utils/baseUrl";
 const SignUp = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
+    username: "",
     email: "",
     first_name: "",
     last_name: "",
@@ -24,11 +25,11 @@ const SignUp = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const { email, first_name, last_name, password, password2 } = formData;
+  const { username, email, first_name, last_name, password, password2 } = formData;
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email || !first_name || !last_name || !password || !password2) {
+    if (!username || !email || !first_name || !last_name || !password || !password2) {
       setError("All fields are required");
       return;
     }
@@ -82,6 +83,16 @@ const SignUp = () => {
             <span className="text-red-500">{error}</span>
           </div>
           <form onSubmit={handleSubmit}>
+          <div>
+              <input
+                type="text"
+                name="username"
+                placeholder="username"
+                className="p-1 text-red-900"
+                value={username}
+                onChange={handleChange}
+              />
+            </div>
             <div>
               <input
                 type="text"
