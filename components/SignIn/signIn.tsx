@@ -47,9 +47,9 @@ const SignIn = () => {
         const expirationDate = new Date();
         expirationDate.setMonth(expirationDate.getMonth() + 1);
         document.cookie = `${cookieName}=${cookieValue}; expires=${expirationDate.toUTCString()}; path=/; SameSite=strict`;
+        setIsLoading(false)
         router.push("/profile");
         toast.success("Login successful");
-        setIsLoading(false)
       }
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
