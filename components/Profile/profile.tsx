@@ -34,18 +34,39 @@ const Profile = () => {
 
   return (
     <>
-      <h1 className="text-center p-3">Profile</h1>
+      <h2 className='text-center text-2xl text-red-600 mb-10'>Page is under construction....</h2>
       {loadingProfile ? (
         <div className="flex justify-center">
-          <div className="mt-14">Loading profile data...</div>
+          <div className="">Loading profile data...</div>
         </div>
       ) : (
-        <div className="flex flex-col items-center mt-20 gap-2 ">
-          <p>Name: {userInfo.name}</p>
-          <p>Email: {userInfo.email}</p>
-          <div className="flex justify-center mt-4">
+        <>
+          <div className="flex gap-2 justify-between ">
+
+            <div className="w-[45%] flex justify-center">
+              <div>
+
+                <div className="flex flex-col gap-2 ">
+                  <p>Name: {userInfo.name}</p>
+                  <p>Email: {userInfo.email}</p>
+                  <div className="flex justify-center mt-4">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div className="flex w-[45%] justify-center">
+
+              <div className="flex-col flex">
+                <div><a href="/uploadStory"> Write Story </a> </div>
+                <div> <a href="/logout"> Log Out </a></div>
+              </div>
+
+            </div>
+
           </div>
-        </div>
+        </>
       )}
     </>
   );

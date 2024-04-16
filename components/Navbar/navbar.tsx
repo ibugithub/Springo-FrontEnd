@@ -52,12 +52,29 @@ export const Navbar = () => {
           >
             Story
           </a>
+
           <a
-            href="/uploadStory"
+            href="/checklist"
             className="navbar-item"
             onClick={handleNavigationClick}
           >
-            Write
+            CheckList
+          </a>
+
+          <a
+            href="/audience"
+            className="navbar-item"
+            onClick={handleNavigationClick}
+          >
+            Audience
+          </a>
+
+          <a
+            href="/about"
+            className="navbar-item"
+            onClick={handleNavigationClick}
+          >
+            About
           </a>
 
           {isAuthenticated ? (
@@ -70,13 +87,6 @@ export const Navbar = () => {
               >
                 Profile
               </a>
-              <span
-                className="navbar-item cursor-pointer"
-                aria-haspopup="true"
-                onClick={handleLogoutClick}
-              >
-                Sign out
-              </span>
             </>
           ) : (
             <a

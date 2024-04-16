@@ -3,9 +3,8 @@ import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { AxiosRequests } from "./axiosRequests";
 import { CustomRouter } from "../interface";
-import { Dispatch, SetStateAction } from 'react';
 
-export const HandleLogout = async (router: CustomRouter, setIsLoading: Dispatch<SetStateAction<boolean>>) => {
+export const HandleLogout = async (router: CustomRouter) => {
   const reqInstance = AxiosRequests(router);
   const refresh_token = Cookies.get("refresh_token")
   const formData = { "refresh_token": refresh_token }
@@ -16,17 +15,19 @@ export const HandleLogout = async (router: CustomRouter, setIsLoading: Dispatch<
       localStorage.clear();
       Cookies.remove('refresh_token')
       toast.success("Logout successful");
-      setIsLoading(false);
       router.push("/");
+      return;
     }
   } catch (error: any) {
-    setIsLoading(false);
     if (error.response.status === 401) {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("email");
-      localStorage.removeItem("name");
-      router.push("/signin");
-      toast.error("Session expired");
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("email");
+        localStorage.removeItem("name");
+        router.push("/signin");
+        toast.error("Session expired");
+      }
+      return;
     } else {
       console.error("Logout error:", error.response);
       toast.error("An error occurred during logout");

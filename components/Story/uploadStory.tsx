@@ -62,6 +62,7 @@ export const Uploadprod = () => {
 
   return (
     <>
+      <h2 className='mb-14 text-2xl text-red-600'>Page is under construction....</h2>
       <div className="text-center mt-[9rem]">
         <h1>Let&apos;s Write some Story</h1>
       </div>

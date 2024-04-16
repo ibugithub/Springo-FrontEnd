@@ -26,7 +26,7 @@
 
 .navbar-item {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: .8rem;
   color: rgb(255, 255, 255);
   text-decoration: none;
   margin: auto;
@@ -67,14 +67,14 @@
 }
 
 .logo-image {
-  height: 40px; /* Adjust the height as needed */
+  height: 40px; 
   width: auto;
   border-radius: 50%;
   margin-right: 1rem; /* Add some margin to separate the logo from other navbar items */
 }
 
 .logo-text {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: white;
   margin: auto;

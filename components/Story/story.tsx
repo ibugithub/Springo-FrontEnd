@@ -55,6 +55,7 @@ export const ShowProducts = () => {
 
   return (
     <div className="bg-white text-red-900 pl-10 pb-10">
+      <h2 className='mb-14 text-2xl text-red-600'>Page is under construction....</h2>
       <h1 className="text-center"> Stories </h1>
       <div>
         {stories.map((story) => (
