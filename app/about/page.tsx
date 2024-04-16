@@ -1,6 +1,6 @@
 import { About } from "@/components/About/about";
 
-export const Page = () => {
+const Page = () => {
   return <About />;
 };
 export default Page;
