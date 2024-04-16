@@ -1,6 +1,6 @@
 import { Audience } from "@/components/Audience/audience";
 
-export const Page = () => {
+const Page = () => {
   return <Audience />;
 };
-export default Audience;
+export default Page;
