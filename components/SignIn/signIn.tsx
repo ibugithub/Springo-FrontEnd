@@ -8,8 +8,8 @@ import logoImage from "../../assets/logo.jpg";
 import "../../styles/login-register.css";
 import Image from "next/image";
 import { BaseUrl } from "../utils/baseUrl";
-import { login, logout } from "@/lib/features/auth/authSlice";
-import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import { login} from "@/lib/features/auth/authSlice";
+import {useAppDispatch } from "@/lib/hooks";
 
 const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -28,8 +28,12 @@ const SignIn = () => {
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    setIsLoading(true)
     e.preventDefault();
+    setIsLoading(true);
+    if (!formData.username || !formData.password) { 
+      setError('All fields are required')
+    }
+
     try {
       const url = `${BaseUrl}/api/accounts/login`;
       const req = await axios.post(
@@ -68,7 +72,6 @@ const SignIn = () => {
         }
       } else {
         console.log("Unhandled Error:", error);
-        toast.error("An unKnown error occurred");
       }
       setIsLoading(false)
     }
