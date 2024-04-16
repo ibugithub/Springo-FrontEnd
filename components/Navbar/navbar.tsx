@@ -3,15 +3,12 @@ import React, { useEffect, useState } from "react";
 import "../../styles/navbar.css";
 import logoImage from "../../assets/logo.jpg";
 import Image from "next/image";
-import { HandleLogout } from "../utils/AuthLogout";
-import { useRouter } from "next/navigation";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
-import { login, logout } from "@/lib/features/auth/authSlice";
+import { login } from "@/lib/features/auth/authSlice";
 
 export const Navbar = () => {
   const dispatch = useAppDispatch();
   const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -22,12 +19,6 @@ export const Navbar = () => {
   }, [dispatch]);
 
   const handleNavigationClick = () => {
-    setIsLoading(true);
-  }
-
-  const handleLogoutClick = () => {
-    HandleLogout(router, setIsLoading);
-    dispatch(logout());
     setIsLoading(true);
   }
 
