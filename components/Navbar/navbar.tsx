@@ -28,6 +28,7 @@ export const Navbar = () => {
   const handleLogoutClick = () => {
     HandleLogout(router, setIsLoading);
     dispatch(logout());
+    setIsLoading(true);
   }
 
   if (isLoading) {
