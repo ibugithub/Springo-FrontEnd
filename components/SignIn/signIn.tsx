@@ -68,7 +68,6 @@ const SignIn = () => {
           setError("Email or password is incorrect");
         } else {
           console.log("unknown Error: ", error);
-          toast.error("An Error has occurred");
         }
       } else {
         console.log("Unhandled Error:", error);
