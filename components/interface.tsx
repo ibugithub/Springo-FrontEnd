@@ -8,6 +8,7 @@ export interface Story {
   id: string;
   name: string;
   story: string;
+  author: string;
 }
 
 export interface EditStoryProps {

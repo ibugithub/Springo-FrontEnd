@@ -7,19 +7,31 @@ import { AxiosRequests } from "../utils/axiosRequests";
 
 export const Uploadprod = () => {
   const customRequest = AxiosRequests();
+  const [error, setError] = useState('');
   const { isWriter, setIsWriter, isLoading } = CheckWriter();
-
   const [formData, setFormData] = useState({
     name: "",
     story: "",
   })
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const url = "/stories/create_story/"
+      if (!formData.name) {
+        setError('Please provide a name')
+        return;
+      }
+      if (!formData.story) {
+        setError('Please provide a story')
+        return;
+      }
       const response = await customRequest.post(url, formData)
-      toast.success("Story uploaded successfully")
+      if (response.status === 201) {
+        setFormData({name: "", story: ""})
+        toast.success("Story uploaded successfully")
+      }
     } catch (error) {
       console.error("Error While uplaoding", error);
     }
@@ -65,6 +77,7 @@ export const Uploadprod = () => {
       <h2 className='mb-14 text-2xl text-red-600'>Page is under construction....</h2>
       <div className="text-center mt-[9rem]">
         <h1>Let&apos;s Write some Story</h1>
+        <span className="text-red-600">{error}</span>
       </div>
 
       <form className=" ">

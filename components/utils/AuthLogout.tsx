@@ -3,8 +3,11 @@ import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { AxiosRequests } from "./axiosRequests";
 import { CustomRouter } from "../interface";
+import { useAppDispatch } from "@/lib/hooks"
+import { logout } from "@/lib/features/auth/authSlice"
 
 export const HandleLogout = async (router: CustomRouter) => {
+  const dispatch = useAppDispatch();
   const reqInstance = AxiosRequests(router);
   const refresh_token = Cookies.get("refresh_token")
   const formData = { "refresh_token": refresh_token }
@@ -15,6 +18,7 @@ export const HandleLogout = async (router: CustomRouter) => {
       localStorage.clear();
       Cookies.remove('refresh_token')
       toast.success("Logout successful");
+      dispatch(logout());
       router.push("/");
       return;
     }

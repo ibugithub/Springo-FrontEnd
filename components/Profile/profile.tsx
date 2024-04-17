@@ -59,7 +59,7 @@ const Profile = () => {
             <div className="flex w-[45%] justify-center">
 
               <div className="flex-col flex">
-                <div><a href="/uploadStory"> Write Story </a> </div>
+                <div><a href="/stories/indeStories"> My Stories </a> </div>
                 <div> <a href="/logout"> Log Out </a></div>
               </div>
 
