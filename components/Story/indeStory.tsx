@@ -41,10 +41,11 @@ export const ShowIndeStory = () => {
   };
 
   const handleDelete = async (id: string) => {
+    const url = `/stories/delete/${id}/`
     try {
-      await axios.delete(`http://localhost:3000/api/prod/del/${id}`);
+      await customRequest.delete(url);
       fetch();
-      toast.success("Device deleted successfully");
+      toast.success("Story deleted successfully");
     } catch (err) {
       console.error("Error deleting device", err);
     }

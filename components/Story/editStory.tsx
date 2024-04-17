@@ -3,9 +3,11 @@ import { useState } from "react";
 import axios from "axios";
 import { EditStoryProps } from "../interface";
 import { BaseUrl } from "../utils/baseUrl";
+import { AxiosRequests } from "../utils/axiosRequests";
 
 
 export const EditStory = ({ story, onSave, onCancel }: EditStoryProps) => {
+  const customRequest = AxiosRequests();
   const [editedStory, setEditedStory] = useState({
     id: story.id,
     name: story.name,
@@ -14,29 +16,33 @@ export const EditStory = ({ story, onSave, onCancel }: EditStoryProps) => {
   const [error, setError] = useState('');
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if(!editedStory.name){
+    if (!editedStory.name) {
       setError("You must provide a name");
       return;
     }
-    if(!editedStory.story){
+    if (!editedStory.story) {
       setError("You must provide your story");
       return;
     }
     const isChanged = story.name !== editedStory.name || story.story !== editedStory.story;
-    if (!isChanged) {
-      onSave(isChanged)
-      return;
-    }
-    try {
-      const url = `${BaseUrl}/api/stories/edit/${editedStory.id}`
-      const response = await axios.put(url, editedStory, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+
+    if (isChanged) {
+      try {
+        const url = `/stories/update/${editedStory.id}/`
+        const response = await customRequest.put(url, editedStory, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+        if (response.status === 200) {
+          onSave(isChanged);
         }
-      });
-      onSave(response.data.product );
-    } catch (err) {
-      console.error("Error updating product", err);
+
+      } catch (err) {
+        console.error("Error updating product", err);
+      }
+    } else {
+      onSave(isChanged);
     }
   }
 
