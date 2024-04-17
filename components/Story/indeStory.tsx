@@ -5,7 +5,6 @@ import axios from "axios";
 import { EditStory } from "./editStory";
 import { toast } from "react-toastify";
 import { Story } from "../interface";
-import { BaseUrl } from "../utils/baseUrl";
 import { AxiosRequests } from "../utils/axiosRequests";
 
 export const ShowIndeStory = () => {
@@ -19,24 +18,20 @@ export const ShowIndeStory = () => {
   };
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchStories = async () => {
       fetch();
     };
-    fetchProducts();
+    fetchStories();
   }, []);
 
-  const handleEdit = (prod: Story) => {
-    setEditingStory(prod);
+  const handleEdit = (story : Story) => {
+    setEditingStory(story);
   };
 
-  const handleSave = (newProd: Story) => {
+  const handleSave = (isChanged : boolean) => { 
     fetch();
-    const isChanged =
-      newProd.id === editingStory?.id &&
-      newProd.name === editingStory?.name &&
-      newProd.story === editingStory?.story &&
     setEditingStory(null);
-    if (!isChanged) {
+    if (isChanged) {
       toast.success("Story updated successfully");
     }
   };

@@ -13,7 +13,7 @@ export interface Story {
 
 export interface EditStoryProps {
   story: Story;
-  onSave: (story: Story) => void;
+  onSave: (isChanged: boolean) => void;
   onCancel: () => void;
 }
 

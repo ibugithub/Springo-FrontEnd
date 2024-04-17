@@ -14,6 +14,19 @@ export const EditStory = ({ story, onSave, onCancel }: EditStoryProps) => {
   const [error, setError] = useState('');
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if(!editedStory.name){
+      setError("You must provide a name");
+      return;
+    }
+    if(!editedStory.story){
+      setError("You must provide your story");
+      return;
+    }
+    const isChanged = story.name !== editedStory.name || story.story !== editedStory.story;
+    if (!isChanged) {
+      onSave(isChanged)
+      return;
+    }
     try {
       const url = `${BaseUrl}/api/stories/edit/${editedStory.id}`
       const response = await axios.put(url, editedStory, {
@@ -36,7 +49,7 @@ export const EditStory = ({ story, onSave, onCancel }: EditStoryProps) => {
       <form onSubmit={handleSubmit} className="py-5 flex flex-col gap-2 w-[250px] items-start">
         <span className="text-red-500">{error}</span>
         <input type="text" name="name" value={editedStory.name} placeholder="Product" onChange={handleChange} />
-        <textarea cols={20} rows={2} name="story" value={editedStory.story} placeholder="Description" onChange={handleChange} />
+        <textarea className="w-[90vw] h-[20vh]" cols={20} rows={2} name="story" value={editedStory.story} placeholder="Description" onChange={handleChange} />
         <div className="flex gap-2">
           <button className="bg-blue-300 py-1 px-3" type="submit">Save</button>
           <button className="bg-red-300 py-1 px-3" type="button" onClick={onCancel}>Cancel</button>
