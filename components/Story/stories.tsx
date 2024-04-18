@@ -39,14 +39,21 @@ export const ShowStories = () => {
       <div className="container mx-auto px-4 py-8">
         {isLoading ? (
           <div className="flex justify-center items-center">
-            <div  className="text-2xl text-gray-600">Loading Story...</div>
+            <div className="text-2xl text-gray-600">Loading Story...</div>
           </div>
         ) : (
           <>
-            <div className="flex justify-center mb-8">
-              <a href="/uploadStory" className="text-lg text-green-600 hover:underline">
-                Write Your Own Story
-              </a>
+            <div className="flex justify-end gap-1">
+              <div className="flex justify-center mb-8">
+                <a href="/stories/indeStories" className="text-lg text-white px-8 py-3 rounded-lg shadow-lg transition duration-300 bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600">
+                  Your Stories
+                </a>
+              </div>
+              <div className="flex justify-center mb-8">
+                <a href="/uploadStory" className="text-lg text-white px-8 py-3 rounded-lg shadow-lg transition duration-300 bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600">
+                  Write Your Own Story
+                </a>
+              </div>
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {stories.map((story) => (
@@ -56,8 +63,8 @@ export const ShowStories = () => {
                     by <span className="text-green-600">{story.author}</span>
                   </p>
                   <p className="text-gray-700">
-                  {story.story.length > 100 ? story.story.substring(0, 200) + "..." : story.story}
-                  {story.story.length > 100 && <Link  href={`/stories/story/${story.id}`} className="text-green-500">Read more</Link>}
+                    {story.story.length > 100 ? story.story.substring(0, 200) + "..." : story.story}
+                    {story.story.length > 100 && <Link href={`/stories/story/${story.id}`} className="text-green-500">Read more</Link>}
                   </p>
                 </div>
               ))}
