@@ -69,7 +69,7 @@ export const Uploadprod = () => {
             <form className="w-full max-w-lg">
               <div className="flex flex-col gap-4">
                 <input className="border-b-2 border-blue-600 px-4 py-2 text-lg text-blue-900 placeholder-gray-500 focus:outline-none focus:border-blue-700 transition duration-300" type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
-                <textarea className="border border-blue-600 px-4 py-2 text-lg text-blue-900 placeholder-gray-500 focus:outline-none focus:border-blue-700 transition duration-300" name="story" placeholder="Description" value={formData.story} onChange={handleChange} />
+                <textarea className="border border-blue-600 px-4 py-2 text-lg text-blue-900 placeholder-gray-500 focus:outline-none focus:border-blue-700 transition duration-300" name="story" placeholder="Story" value={formData.story} onChange={handleChange} />
               </div>
               <button type="submit" onClick={handleSubmit} className="mt-8 px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">Publish</button>
             </form>
