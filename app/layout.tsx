@@ -20,7 +20,7 @@ export default function RootLayout({
         <body>
           <Navbar />
           <ToastContainer />
-          <div style={{ marginTop: "64px" }}>{children}</div>
+          <div className="mt-[57px]">{children}</div>
           <Footer />
         </body>
       </html>

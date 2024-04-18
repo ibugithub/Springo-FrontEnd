@@ -27,7 +27,7 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="navbar bg-custom-bgcolor">
+    <nav className="navbar bg-white">
       <div className="navbar-items">
         <div className="left-nav-items">
           <Image src={logoImage} alt="Logo" className="logo-image" />
