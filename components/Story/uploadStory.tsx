@@ -55,39 +55,35 @@ export const Uploadprod = () => {
     }
   }
 
-  if (isLoading) {
-    return (
-      <div>Loading ....</div>
-    )
-  }
-
-  if (!isWriter) {
-    return (
-      <div className="text-center pt-20">
-        <div>
-          You must have to be a writer to write stories
-        </div>
-        <button className="bg-dark" onClick={handleRegisterAsWriter}>Click here to register as a writer</button>
-      </div>
-    );
-  }
-
   return (
-    <>
-      <h2 className='mb-14 text-2xl text-red-600'>Page is under construction....</h2>
-      <div className="text-center mt-[9rem]">
-        <h1>Let&apos;s Write some Story</h1>
-        <span className="text-red-600">{error}</span>
-      </div>
-
-      <form className=" ">
-        <div className="flex flex-col gap-2 w-[250px] mx-auto">
-          <input className="text-red-900" type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
-          <textarea className="text-red-900" name="story" placeholder="Description" value={formData.story} onChange={handleChange} />
-          <button type="submit" onClick={handleSubmit} className="bg-red-900 text-white"> Publish </button>
+    <div className="mb-20">
+      {isLoading ? (
+        <div className="flex justify-center items-center h-screen">
+          <div className="text-2xl text-gray-600">Loading...</div>
         </div>
-      </form>
-    </>
+      ) : isWriter ? (
+        <div className="container mx-auto px-4 py-8">
+          <h2 className="text-2xl font-semibold text-blue-600 mb-14">Let&apos;s Write a Story</h2>
+          <div className="flex flex-col items-center">
+            <span className="text-red-600 mb-4">{error}</span>
+            <form className="w-full max-w-lg">
+              <div className="flex flex-col gap-4">
+                <input className="border-b-2 border-blue-600 px-4 py-2 text-lg text-blue-900 placeholder-gray-500 focus:outline-none focus:border-blue-700 transition duration-300" type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
+                <textarea className="border border-blue-600 px-4 py-2 text-lg text-blue-900 placeholder-gray-500 focus:outline-none focus:border-blue-700 transition duration-300" name="story" placeholder="Description" value={formData.story} onChange={handleChange} />
+              </div>
+              <button type="submit" onClick={handleSubmit} className="mt-8 px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">Publish</button>
+            </form>
+          </div>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center h-screen">
+          <div className="text-center mb-8">
+            <p className="text-2xl text-blue-600 font-bold">You must be a writer to write stories</p>
+            <button className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300" onClick={handleRegisterAsWriter}>Register as a writer</button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
