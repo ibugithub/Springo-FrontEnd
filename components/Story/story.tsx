@@ -37,8 +37,8 @@ export const ShowStories = () => {
     <div className="bg-gray-100 min-h-screen">
       <div className="container mx-auto px-4 py-8">
         {isLoading ? (
-          <div className="flex justify-center items-center h-screen">
-            <div className="text-2xl text-gray-600">Loading data...</div>
+          <div className="flex justify-center items-center">
+            <div  className="text-2xl text-gray-600">Loading Story...</div>
           </div>
         ) : (
           <>
@@ -54,7 +54,10 @@ export const ShowStories = () => {
                   <p className="text-gray-600 mb-4">
                     by <span className="text-green-600">{story.author}</span>
                   </p>
-                  <p className="text-gray-700">{story.story}</p>
+                  <p className="text-gray-700">
+                  {story.story.length > 100 ? story.story.substring(0, 200) + "..." : story.story}
+                  {story.story.length > 100 && <a className="text-green-500" href="#">Read more</a>}
+                  </p>
                 </div>
               ))}
             </div>
