@@ -34,32 +34,34 @@ export const ShowStories = () => {
     fetchStories();
   }, []);
   return (
-    <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-      {isLoading ? (
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-          <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-            Loading data...
+    <div className="bg-gray-100 min-h-screen">
+      <div className="container mx-auto px-4 py-8">
+        {isLoading ? (
+          <div className="flex justify-center items-center h-screen">
+            <div className="text-2xl text-gray-600">Loading data...</div>
           </div>
-        </div>
-      ) : (
-        <>
-          <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-            <a href="/uploadStory" className="text-2xl font-bold text-cyan-600 hover:text-cyan-700">Write Your Own Story</a>
-          </div>
-          <div className="mt-8">
-            {stories.map((story) => (
-              <div key={story.id} className="mb-4 bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-2xl font-bold text-gray-800">{story.name}</h2>
-                <p className="mt-2 text-sm text-gray-500">by <span className="font-medium text-green-400">{story.author}</span></p>
-                <p className="mt-2 text-gray-700">Description: {story.story}</p>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
+        ) : (
+          <>
+            <div className="flex justify-center mb-8">
+              <a href="/uploadStory" className="text-lg text-green-600 hover:underline">
+                Write Your Own Story
+              </a>
+            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {stories.map((story) => (
+                <div key={story.id} className="bg-white rounded-lg shadow-lg p-6">
+                  <h2 className="text-xl font-semibold mb-2">{story.name}</h2>
+                  <p className="text-gray-600 mb-4">
+                    by <span className="text-green-600">{story.author}</span>
+                  </p>
+                  <p className="text-gray-700">{story.story}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
-  
 
 };
