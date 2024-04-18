@@ -8,7 +8,7 @@ import DjangoImage from '../../public/images/django.png';
 import DRFImage from '../../public/images/drf.png';
 import JWTImage from '../../public/images/jwt.png';
 import PostgreSQLImage from '../../public/images/PostgresSQL.png'
-import VercelImage from '../../public/images/vercel.png';
+import VercelImage from '../../public/images/verc.png'
 import RenderImage from '../../public/images/render.png';
 import SubbaseImage from '../../public/images/supbase.png';
 
