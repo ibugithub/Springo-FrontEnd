@@ -12,9 +12,9 @@ export const Navbar = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    const token =  localStorage.getItem("access_token");
-    if(token) {
-        dispatch(login())
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      dispatch(login())
     }
   }, [dispatch]);
 
@@ -23,9 +23,8 @@ export const Navbar = () => {
   }
 
   if (isLoading) {
-    return <div className="flex justify-center"><span className="mt-2">Loading...</span></div>
+    return <div className=" bg-white absolute top-0 left-0 right-0 h-[72px] flex justify-center"><span className="mt-[1.4rem]">Loading...</span></div>
   }
-
   return (
     <nav className="navbar bg-white">
       <div className="navbar-items">
@@ -74,7 +73,7 @@ export const Navbar = () => {
                 href="/profile"
                 className="navbar-item"
                 aria-haspopup="true"
-                onClick={handleNavigationClick} 
+                onClick={handleNavigationClick}
               >
                 Profile
               </a>
@@ -93,4 +92,6 @@ export const Navbar = () => {
       </div>
     </nav>
   );
+
+
 };

@@ -78,7 +78,7 @@ const SignIn = () => {
 
   if(isLoading) {
     return (
-      <div className="flex justify-center"><div className="mt-14">Logging you in..</div></div>
+      <div className="flex justify-center"><div className="mt-14 bg-white">Logging you in..</div></div>
     )
   }
 
