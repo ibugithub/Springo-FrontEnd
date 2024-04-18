@@ -52,47 +52,41 @@ export const ShowIndeStory = () => {
   };
 
   return (
-    <div className="bg-white text-red-900 pl-10 pb-10">
-      <h2 className='mb-14 text-2xl text-red-600'>Page is under construction....</h2>
-      <div>
-        {stories.map((story) => (
-          <div key={story.id}>
-            {editingStory && editingStory.id === story.id ? (
-              <EditStory
-                key={story.id}
-                story={editingStory}
-                onSave={handleSave}
-                onCancel={handleCancel}
-              />
-            ) : (
-              <>
-                <h2 className="text-3xl">{story.name}</h2>
-                <p>Description: {story.story}</p>
-                <div className="text-white flex gap-2">
-                  <button
-                    className="bg-blue-500 px-4 py-1"
-                    onClick={() => {
-                      handleEdit(story);
-                    }}
-                  >
-                    {" "}
-                    Edit
-                  </button>
-                  <button
-                    className="bg-red-400 px-4 py-1"
-                    onClick={() => {
-                      handleDelete(story.id);
-                    }}
-                  >
-                    {" "}
-                    Delete{" "}
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
-        ))}
+<div className="bg-white text-gray-900 p-6">
+  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {stories.map((story) => (
+      <div key={story.id} className="bg-gray-100 rounded-lg shadow-md p-6">
+        {editingStory && editingStory.id === story.id ? (
+          <EditStory
+            key={story.id}
+            story={editingStory}
+            onSave={handleSave}
+            onCancel={handleCancel}
+          />
+        ) : (
+          <>
+            <h2 className="text-xl font-bold text-gray-900">{story.name}</h2>
+            <p className="text-gray-700 mb-4">Description: {story.story}</p>
+            <div className="flex items-center space-x-4">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+                onClick={() => handleEdit(story)}
+              >
+                Edit
+              </button>
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300"
+                onClick={() => handleDelete(story.id)}
+              >
+                Delete
+              </button>
+            </div>
+          </>
+        )}
       </div>
-    </div>
+    ))}
+  </div>
+</div>
+
   );
 };

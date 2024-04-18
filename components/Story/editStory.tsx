@@ -52,15 +52,42 @@ export const EditStory = ({ story, onSave, onCancel }: EditStoryProps) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="py-5 flex flex-col gap-2 w-[250px] items-start">
-        <span className="text-red-500">{error}</span>
-        <input type="text" name="name" value={editedStory.name} placeholder="Product" onChange={handleChange} />
-        <textarea className="w-[90vw] h-[20vh]" cols={20} rows={2} name="story" value={editedStory.story} placeholder="Description" onChange={handleChange} />
-        <div className="flex gap-2">
-          <button className="bg-blue-300 py-1 px-3" type="submit">Save</button>
-          <button className="bg-red-300 py-1 px-3" type="button" onClick={onCancel}>Cancel</button>
+      <form onSubmit={handleSubmit} className="py-5 px-6 bg-white rounded-lg shadow-md">
+        <span className="text-red-500 block mb-2">{error}</span>
+        <input
+          type="text"
+          name="name"
+          value={editedStory.name}
+          placeholder="Product"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded-md mb-2"
+        />
+        <textarea
+          className="w-full p-2 border border-gray-300 rounded-md mb-2 resize-none"
+          cols={20}
+          rows={6}
+          name="story"
+          value={editedStory.story}
+          placeholder="Description"
+          onChange={handleChange}
+        />
+        <div className="flex justify-end">
+          <button
+            className="bg-blue-500 text-white py-2 px-4 rounded-md mr-2 hover:bg-blue-600 transition duration-300"
+            type="submit"
+          >
+            Save
+          </button>
+          <button
+            className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-300"
+            type="button"
+            onClick={onCancel}
+          >
+            Cancel
+          </button>
         </div>
       </form>
     </>
   );
+  
 }

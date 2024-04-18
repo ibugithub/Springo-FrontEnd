@@ -56,7 +56,7 @@ export const Uploadprod = () => {
   }
 
   return (
-    <div className="mb-20">
+    <div className="mb-20 ">
       {isLoading ? (
         <div className="flex justify-center items-center h-screen">
           <div className="text-2xl text-gray-600">Loading...</div>
