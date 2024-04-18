@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
+
 type NextNavigationRouter = ReturnType<typeof useRouter>;
 export interface CustomRouter extends NextNavigationRouter {
-
 }
 
 export interface Story {
@@ -21,4 +21,8 @@ export interface signupResponseData {
   email : string[],
   password : string[],
   password2: string[]
+}
+
+export interface storyIdProps {
+  id: string;
 }
