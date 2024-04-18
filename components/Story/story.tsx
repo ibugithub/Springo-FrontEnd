@@ -6,19 +6,25 @@ import { Story } from "../interface";
 import { BaseUrl } from "../utils/baseUrl";
 
 export const ShowStories = () => {
-  const [stories, setStories] = useState<Story[] | string>([]);
+  const [stories, setStories] = useState<Story[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const fetch = async () => {
-    const url = `${BaseUrl}/api/stories/show_story/`
-    const response = await axios.get(url);
-    if (response.status === 200) {
-      setStories(response.data);
-      setIsLoading(false);
-    } else {
-      setStories('could not load stories');
+    try {
+      const url = `${BaseUrl}/api/stories/show_story/`
+      const response = await axios.get(url);
+      if (response.status === 200) {
+        setStories(response.data);
+        setIsLoading(false);
+      } else {
+        setStories([]);
+        setIsLoading(false);
+      }
+
+    } catch (error) {
+      console.error("Error fetching stories:", error);
+      setStories([]); 
       setIsLoading(false);
     }
-
   };
 
   useEffect(() => {
@@ -34,19 +40,19 @@ export const ShowStories = () => {
           <div className="">Loading data...</div>
         </div>
       ) : (
-      <>
-        <div className="flex justify-center">
-          <div><a href="/uploadStory" className="text-green-600">Write Your Own Story</a></div>
-        </div>
-        <div>
-          {stories.map((story) => (
-            <div key={story.id}>
-              <span className="text-2xl ">{story.name}</span> by <span className="text-2xl text-green-400"> {story.author}</span>
-              <p>Description: {story.story}</p>
-            </div>
-          ))}
-        </div>
-      </>
+        <>
+          <div className="flex justify-center">
+            <div><a href="/uploadStory" className="text-green-600">Write Your Own Story</a></div>
+          </div>
+          <div>
+            {stories.map((story) => (
+              <div key={story.id}>
+                <span className="text-2xl ">{story.name}</span> by <span className="text-2xl text-green-400"> {story.author}</span>
+                <p>Description: {story.story}</p>
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

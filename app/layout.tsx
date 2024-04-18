@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Navbar } from "@/components/Navbar/navbar";
 import StoreProvider from "./StoreProvider";
-
+import { Footer } from "@/components/Footer/footer";
 export const metadata: Metadata = {
   title: "Springo",
   description: "Created for the Story teller",
@@ -17,10 +17,11 @@ export default function RootLayout({
   return (
     <StoreProvider>
       <html lang="en">
-        <body className="bg-slate-400">
+        <body>
           <Navbar />
           <ToastContainer />
           <div style={{ marginTop: "64px" }}>{children}</div>
+          <Footer />
         </body>
       </html>
     </StoreProvider>
