@@ -22,7 +22,7 @@ export const ShowStories = () => {
 
     } catch (error) {
       console.error("Error fetching stories:", error);
-      setStories([]); 
+      setStories([]);
       setIsLoading(false);
     }
   };
@@ -34,21 +34,25 @@ export const ShowStories = () => {
     fetchStories();
   }, []);
   return (
-    <div className="bg-white text-red-900 pl-10 pb-10">
+    <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
       {isLoading ? (
-        <div className="flex justify-center">
-          <div className="">Loading data...</div>
+        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+          <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+            Loading data...
+          </div>
         </div>
       ) : (
         <>
-          <div className="flex justify-center">
-            <div><a href="/uploadStory" className="text-green-600">Write Your Own Story</a></div>
+          <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+            <a href="/uploadStory" className="text-2xl font-bold text-cyan-600 hover:text-cyan-700">Write Your Own Story</a>
           </div>
-          <div>
+          <div className="mt-8">
             {stories.map((story) => (
-              <div key={story.id}>
-                <span className="text-2xl ">{story.name}</span> by <span className="text-2xl text-green-400"> {story.author}</span>
-                <p>Description: {story.story}</p>
+              <div key={story.id} className="mb-4 bg-white rounded-lg shadow-md p-6">
+                <h2 className="text-2xl font-bold text-gray-800">{story.name}</h2>
+                <p className="mt-2 text-sm text-gray-500">by <span className="font-medium text-green-400">{story.author}</span></p>
+                <p className="mt-2 text-gray-700">Description: {story.story}</p>
               </div>
             ))}
           </div>
@@ -56,4 +60,6 @@ export const ShowStories = () => {
       )}
     </div>
   );
+  
+
 };
