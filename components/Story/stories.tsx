@@ -38,8 +38,9 @@ export const ShowStories = () => {
     <div className="bg-gray-100 min-h-screen">
       <div className="container mx-auto px-4 py-8">
         {isLoading ? (
-          <div className="flex justify-center items-center">
-            <div className="text-2xl text-gray-600">Loading Story...</div>
+          <div className="flex items-center justify-center h-screen">
+            <div className="animate-spin rounded-full h-28 w-28 border-t-2 border-b-2 border-gray-900">
+            </div>
           </div>
         ) : (
           <>

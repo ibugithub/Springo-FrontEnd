@@ -29,7 +29,7 @@ export const Uploadprod = () => {
       }
       const response = await customRequest.post(url, formData)
       if (response.status === 201) {
-        setFormData({name: "", story: ""})
+        setFormData({ name: "", story: "" })
         toast.success("Story uploaded successfully")
       }
     } catch (error) {
@@ -58,8 +58,9 @@ export const Uploadprod = () => {
   return (
     <div className="mb-20 ">
       {isLoading ? (
-        <div className="flex justify-center items-center h-screen">
-          <div className="text-2xl text-gray-600">Loading...</div>
+        <div className="flex items-center justify-center h-screen">
+          <div className="animate-spin rounded-full h-28 w-28 border-t-2 border-b-2 border-gray-900">
+          </div>
         </div>
       ) : isWriter ? (
         <div className="container mx-auto px-4 py-8">

@@ -77,8 +77,9 @@ const SignUp = () => {
   return (
     <div className="login-container">
       {isLoading ? (
-        <div className="flex justify-center">
-          <div className=" bg-white p-4 rounded-lg shadow-lg">Signin you up...</div>
+        <div className="flex items-center justify-center h-screen">
+          <div className="animate-spin rounded-full h-28 w-28 border-t-2 border-b-2 border-gray-900">
+          </div>
         </div>
       ) :
 

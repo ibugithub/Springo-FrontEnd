@@ -1,6 +1,6 @@
-import { CheckList } from "@/components/CheckList/checklist";
+import { ChecklistPage } from "@/components/CheckList/checklist";
 
 const Page = () => {
-  return <CheckList />;
+  return <ChecklistPage />;
 };
 export default Page;

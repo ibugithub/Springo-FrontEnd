@@ -65,8 +65,9 @@ export const ShowIndeStory = () => {
   return (
     <div className="bg-white text-gray-900 p-6">
       {isLoading ? (
-        <div className="flex justify-center items-center h-screen">
-          <div className="bg-white p-4 rounded-lg shadow-lg">Loading Story...</div>
+        <div className="flex items-center justify-center h-screen">
+          <div className="animate-spin rounded-full h-28 w-28 border-t-2 border-b-2 border-gray-900">
+          </div>
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

@@ -11,6 +11,7 @@ import PostgreSQLImage from '../../public/images/PostgresSQL.png'
 import VercelImage from '../../public/images/verc.png'
 import RenderImage from '../../public/images/render.png';
 import SubbaseImage from '../../public/images/supbase.png';
+import ReduxImage from '../../public/images/redux.png'
 
 export const About = () => {
   return (
@@ -43,6 +44,10 @@ export const About = () => {
             <div className="flex items-center">
               <Image src={AxiosImage} alt="Axios" width={48} height={48} className="mr-4" />
               <p>Axios</p>
+            </div>
+            <div className="flex items-center">
+              <Image src={ReduxImage} alt="Redux" width={48} height={48} className="mr-4" />
+              <p>Redux</p>
             </div>
           </div>
           <div>

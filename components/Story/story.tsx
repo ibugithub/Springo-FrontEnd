@@ -31,8 +31,9 @@ export const ShowStory = ({ id }: storyIdProps) => {
       <div className="pt-[1rem] pb-[1rem] bg-gradient-to-r from-black to-blue-900 min-h-screen flex justify-center items-center">
         <div className="max-w-4xl w-full bg-white rounded-lg shadow-lg p-8">
           {isLoading ? (
-            <div className="flex justify-center items-center">
-              <div className="text-2xl text-gray-600">Loading Story...</div>
+            <div className="flex items-center justify-center h-screen">
+              <div className="animate-spin rounded-full h-28 w-28 border-t-2 border-b-2 border-gray-900">
+              </div>
             </div>
           ) : (
             <>

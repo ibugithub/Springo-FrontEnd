@@ -8,8 +8,8 @@ import logoImage from "../../assets/logo.jpg";
 import "../../styles/login-register.css";
 import Image from "next/image";
 import { BaseUrl } from "../utils/baseUrl";
-import { login} from "@/lib/features/auth/authSlice";
-import {useAppDispatch } from "@/lib/hooks";
+import { login } from "@/lib/features/auth/authSlice";
+import { useAppDispatch } from "@/lib/hooks";
 
 const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -30,7 +30,7 @@ const SignIn = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    if (!formData.username || !formData.password) { 
+    if (!formData.username || !formData.password) {
       setError('All fields are required')
     }
 
@@ -79,8 +79,9 @@ const SignIn = () => {
   return (
     <div className="login-container">
       {isLoading ? (
-        <div className="flex justify-center">
-          <div className=" bg-white p-4 rounded-lg shadow-lg">Logging you in...</div>
+        <div className="flex items-center justify-center h-screen">
+          <div className="animate-spin rounded-full h-28 w-28 border-t-2 border-b-2 border-gray-900">
+          </div>
         </div>
       ) : (
         <div className="login-card">
