@@ -76,58 +76,60 @@ const SignIn = () => {
     }
   };
 
-  if(isLoading) {
-    return (
-      <div className="flex justify-center"><div className="mt-14 bg-white">Logging you in..</div></div>
-    )
-  }
-
   return (
     <div className="login-container">
-      <div className="login-card">
-        <div className="picture-section"></div>
-        <div className="login-content">
-          <div className="logo-card-header">
-            <Image src={logoImage} alt="Logo" className="logo-card" />
-            <span className="login-card-text">Sign in</span>
-          </div>
-          <div className="flex justify-center mt-2 mb-2">
-            <span className="text-red-500">{error}</span>
-          </div>
-          <form onSubmit={handleSubmit}>
+      {isLoading ? (
+        <div className="flex justify-center">
+          <div className=" bg-white p-4 rounded-lg shadow-lg">Logging you in...</div>
+        </div>
+      ) : (
+        <div className="login-card">
+          <div className="picture-section"></div>
+          <div className="login-content">
+            <div className="logo-card-header">
+              <Image src={logoImage} alt="Logo" className="logo-card" />
+              <span className="login-card-text">Sign in</span>
+            </div>
+            <div className="flex justify-center mt-2 mb-2">
+              <span className="text-red-500">{error}</span>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  className="p-1 text-red-900"
+                  value={username}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <input
+                  className="p-1 text-red-900"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="text-center mt-2">
+                <input type="submit" value="Sign In" className="submit-btn" />
+              </div>
+            </form>
             <div>
-              <input
-                type="text"
-                name="username"
-                placeholder="username"
-                className="p-1 text-red-900"
-                value={username}
-                onChange={handleChange}
-              />
+              <p>
+                Don&apos;t have an account? <a href="/signup">Sign Up</a>
+              </p>
             </div>
-            <div>
-              <input
-                className="p-1 text-red-900"
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="text-center mt-2">
-              <input type="submit" value="Sign In" className="submit-btn" />
-            </div>
-          </form>
-          <div>
-            <p>
-              Dont have an account? <a href="/signup">Sign Up</a>
-            </p>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
+  
+  
 };
 
 export default SignIn;
