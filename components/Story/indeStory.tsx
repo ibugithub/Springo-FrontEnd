@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { Story } from "../interface";
 import { AxiosRequests } from "../utils/axiosRequests";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 
 export const ShowIndeStory = () => {
@@ -83,7 +84,10 @@ export const ShowIndeStory = () => {
               ) : (
                 <>
                   <h2 className="text-xl font-bold text-gray-900">{story.name}</h2>
-                  <p className="text-gray-700 mb-4">Description: {story.story}</p>
+                  <p className="text-gray-700 mb-4">
+                  {story.story.length > 100 ? story.story.substring(0, 200) + "..." : story.story}
+                    {story.story.length > 100 && <Link href={`/stories/story/${story.id}`} className="text-green-500">Read more</Link>}
+                  </p>
                   <div className="flex items-center space-x-4">
                     <button
                       className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"

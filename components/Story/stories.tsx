@@ -44,15 +44,15 @@ export const ShowStories = () => {
           </div>
         ) : (
           <>
-            <div className="flex justify-end gap-1">
+            <div className="flex justify-end gap-2">
               <div className="flex justify-center mb-8">
-                <a href="/stories/indeStories" className="text-lg text-white px-8 py-3 rounded-lg shadow-lg transition duration-300 bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600">
-                  Your Stories
+                <a href="/stories/indeStories" className="text-lg text-white px-4 py-2 rounded-lg shadow-lg transition duration-300 bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600">
+                  your stories
                 </a>
               </div>
               <div className="flex justify-center mb-8">
-                <a href="/uploadStory" className="text-lg text-white px-8 py-3 rounded-lg shadow-lg transition duration-300 bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600">
-                  Write Your Own Story
+                <a href="/uploadStory" className="text-lg text-white px-4 py-2 rounded-lg shadow-lg transition duration-300 bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600">
+                  write your story
                 </a>
               </div>
             </div>
