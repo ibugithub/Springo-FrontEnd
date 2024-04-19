@@ -17,11 +17,6 @@
   display: flex;
 }
 
-.right-nav-items {
-  margin-right: 2rem;
-  display: flex;
-  align-items: center;
-}
 
 .navbar-item {
   font-weight: bold;
