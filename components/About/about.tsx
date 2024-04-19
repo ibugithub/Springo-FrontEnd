@@ -19,7 +19,6 @@ export const About = () => {
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-3xl">
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">About Me</h2>
         <p className="text-lg text-gray-700 mb-8">My name is Umme Jahan, and I&apos;m a full-stack web developer.</p>
-        <p>My whatsApp number: +880 1300-293770</p>
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">Project Description</h2>
         <p className="text-lg text-gray-700 mb-8">I chose this project because I wanted to create a platform for sharing and discovering stories from around the world. I&apos;m passionate about storytelling and wanted to provide a space for both readers and writers to connect.</p>
 
