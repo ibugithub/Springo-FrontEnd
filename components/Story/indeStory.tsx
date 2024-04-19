@@ -7,10 +7,12 @@ import { Story } from "../interface";
 import { AxiosRequests } from "../utils/axiosRequests";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { CheckWriter } from "../utils/checkWriter";
 
 
 export const ShowIndeStory = () => {
   const router = useRouter();
+  const { isWriter, setIsWriter } = CheckWriter();
   const customRequest = AxiosRequests();
   const [stories, setStories] = useState<Story[]>([]);
   const [editingStory, setEditingStory] = useState<Story | null>(null);
@@ -21,11 +23,16 @@ export const ShowIndeStory = () => {
       const response = await customRequest.get(url);
       setStories(response.data);
       setLoading(false);
-    } catch (err) {
+    } catch (err: any) {
       setLoading(false);
-      console.log("Error while fetching IndeStory at indeStory page", err);
-      toast.error("You must Sign in first")
-      router.push('/signin');
+      if (err.response.status === 403) {
+        toast.error("You are not a writer");
+        return;
+      } else {
+        setLoading(false);
+        console.error("Error while fetching IndeStory at indeStory page", err);
+        router.push('/signin');
+      }
     }
   };
 
@@ -63,6 +70,19 @@ export const ShowIndeStory = () => {
     }
   };
 
+  const handleRegisterAsWriter = async () => {
+    const url = "/stories/make_writer/";
+    try {
+      const res = await customRequest.get(url)
+      if (res.status === 200) {
+        setIsWriter(true)
+        toast.success("you are a writer now")
+      }
+    } catch (error) {
+      console.error("Error in uploadStory", error);
+    }
+  }
+
   return (
     <div className="bg-white text-gray-900 p-6">
       {isLoading ? (
@@ -70,7 +90,7 @@ export const ShowIndeStory = () => {
           <div className="animate-spin rounded-full h-28 w-28 border-t-2 border-b-2 border-gray-900">
           </div>
         </div>
-      ) : (
+      ) : isWriter ? (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {stories.map((story) => (
             <div key={story.id} className="bg-gray-100 rounded-lg shadow-md p-6">
@@ -85,7 +105,7 @@ export const ShowIndeStory = () => {
                 <>
                   <h2 className="text-xl font-bold text-gray-900">{story.name}</h2>
                   <p className="text-gray-700 mb-4">
-                  {story.story.length > 100 ? story.story.substring(0, 200) + "..." : story.story}
+                    {story.story.length > 100 ? story.story.substring(0, 200) + "..." : story.story}
                     {story.story.length > 100 && <Link href={`/stories/story/${story.id}`} className="text-green-500">Read more</Link>}
                   </p>
                   <div className="flex items-center space-x-4">
@@ -107,7 +127,15 @@ export const ShowIndeStory = () => {
             </div>
           ))}
         </div>
-      )}
+      ) : (
+        <div className="flex flex-col items-center justify-center h-screen">
+          <div className="text-center mb-8">
+            <p className="text-2xl text-blue-600 font-bold">You must be a writer to view stories</p>
+            <button className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300" onClick={handleRegisterAsWriter}>Register as a writer</button>
+          </div>
+        </div>
+      )
+      }
     </div>
 
   );

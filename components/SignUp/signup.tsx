@@ -49,6 +49,7 @@ const SignUp = () => {
       if (req.status === 201) {
         setIsLoading(false);
         toast.success("Registration successful");
+        toast.success("A verification code has been sent to your email");
         router.push("/signin");
       }
     } catch (error: unknown) {
