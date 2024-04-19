@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { CheckWriter } from "../utils/checkWriter";
 import { AxiosRequests } from "../utils/axiosRequests";
+import { useRouter } from "next/navigation";
 
 export const Uploadprod = () => {
   const customRequest = AxiosRequests();
+  const router = useRouter();
   const [error, setError] = useState('');
   const { isWriter, setIsWriter, isLoading } = CheckWriter();
   const [formData, setFormData] = useState({
@@ -30,6 +32,7 @@ export const Uploadprod = () => {
       const response = await customRequest.post(url, formData)
       if (response.status === 201) {
         setFormData({ name: "", story: "" })
+        router.push('/stories')
         toast.success("Story uploaded successfully")
       }
     } catch (error) {
