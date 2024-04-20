@@ -8,7 +8,7 @@ export const Footer = () => {
           <p className=" mb-4">A platform for sharing and discovering stories from around the world.</p>
         <div className="text-center text-sm ">
           <p>&copy; {new Date().getFullYear()} Springo. All rights reserved.</p>
-          <p className="mt-2">Designed with ❤️ by Umme Jahan</p>
+          <p className="mt-2">Designed with ❤️ by Ummey Meher Jahan</p>
         </div>
       </div>
     </footer>
