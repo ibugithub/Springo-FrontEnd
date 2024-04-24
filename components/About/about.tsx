@@ -18,7 +18,7 @@ export const About = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-400 to-blue-500 py-8">
       <div className="max-w-4xl w-full bg-white rounded-lg shadow-lg p-8 md:p-12">
         <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">About Me</h2>
-        <p className="text-lg text-gray-700 mb-8 text-center">My name is Umme Jahan, and I&apos;m a full-stack web developer.</p>
+        <p className="text-lg text-gray-700 mb-8 text-center">I&apos;m Ummey Meher Jahan, a Computer Science student at Georgia State University with a focus on Machine Learning and Artificial Intelligence, expecting to graduate in May 2024. I’ve horn my skills in Java, JavaScript, Python, and more, with experience in AWS, Git, and databases like MongoDB. As a Software Engineer Intern, I found solutions for software bugs and loved creating new project, and as a Math Tutor, I created tailored lessons for Calculus II. I&apos;m an active member of Women in Technology and Girls++, passionate about both tech and community.</p>
         <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Project Description</h2>
         <p className="text-lg text-gray-700 mb-8 text-center">I chose this project because I wanted to create a platform for sharing and discovering stories from around the world. I&apos;m passionate about storytelling and wanted to provide a space for both readers and writers to connect.</p>
 
